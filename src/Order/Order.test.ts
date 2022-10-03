@@ -1,11 +1,10 @@
 import Coupon from "./Coupon";
 import Item from "./Item";
 import Order from "./Order";
-import OrderItem from "./OrderItem";
 
 describe('Order', function() {
     test('Não deve criar um pedido com cpf inválido', function() {
-        const order = () => new Order('111.111.699-47');
+        const order = () => new Order('000.000.000-00');
         expect(order).toThrow('Document is invalid');
     })
 
@@ -22,8 +21,13 @@ describe('Order', function() {
         const order = new Order('092.216.699-47');
         const orderItem = new Item(1, 'Celular Samsung', 1000);
         order.addItem(orderItem, 1);
-        order.addCoupon(new Coupon('VALE20', 20));
+        order.addCoupon(new Coupon('VALE20', 20, new Date('2050-12-17T00:00:00')));
         const total = order.getTotal();
         expect(total).toBe(800);
+    })
+
+    test('Não deve aplicar cupom de desconto expirado', function() {
+        const result = () => new Coupon('VALE20', 20, new Date('1995-12-17T00:00:00'))
+        expect(result).toThrow('Cupom expirado');
     })
 })

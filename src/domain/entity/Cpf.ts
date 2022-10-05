@@ -1,9 +1,9 @@
 export default class Cpf {
-    private cpf: string = '';
+    cpf: string = '';
     CPF_LENGTH = 11;
     EXCEPTION_MESSAGE = 'Document is invalid';
 
-    constructor(rawCpf: string) {
+    constructor(readonly rawCpf: string) {
         this.validateParameter(rawCpf);
     }
 

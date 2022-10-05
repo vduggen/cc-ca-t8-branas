@@ -1,7 +1,8 @@
 import Cpf from "../Cpf/Cpf";
-import Coupon from "./Coupon";
+import Dimension from "../Dimension/Dimension";
+import Coupon from "./Coupon/Coupon";
 import Item from "./Item";
-import OrderItem from "./OrderItem";
+import OrderItem from "./OrderItem/OrderItem";
 
 export default class Order {
     cpf: Cpf;
@@ -13,8 +14,16 @@ export default class Order {
         this.orderItems = [];
     }
 
-    addItem(item: Item, quantity: number) {
-        this.orderItems.push(new OrderItem(item.idItem, item.price, quantity));
+    existItemInOrderItems(id: number) {
+        const result = this.orderItems.filter(orderItem => orderItem.idItem === id);
+        const itemAlreadyExists = result.length > 0;
+        if (itemAlreadyExists) throw new Error('The item already exists');
+    }
+
+    addItem(item: Item, quantity: number, dimension: Dimension, weight: number) {
+        this.existItemInOrderItems(item.idItem);
+        const orderItem = new OrderItem(item.idItem, item.price, quantity, dimension, weight);
+        this.orderItems.push(orderItem);
     }
 
     addCoupon(coupon: Coupon) {

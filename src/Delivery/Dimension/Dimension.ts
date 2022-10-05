@@ -26,4 +26,8 @@ export default class Dimension {
     depthIsNegative(depth: number) {
         if (this.isNegative(depth)) this.negativeException('Depth');
     }
+
+    calculateSize() {
+        return this.width * this.height * this.depth / 1000000;
+    }
 }

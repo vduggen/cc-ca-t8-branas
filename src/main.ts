@@ -6,6 +6,7 @@ import ExpressAdapter from "./infra/http/ExpressAdapter";
 import ItemRepositoryMemory from "./infra/repository/memory/ItemRepositoryMemory";
 import OrderRepositoryMemory from "./infra/repository/memory/OrderRepositoryMemory";
 import Checkout from "./application/Checkout";
+import GetOrderByCpf from "./application/GetOrderByCpf";
 
 const httpServer = new ExpressAdapter();
 httpServer.listen(3000);
@@ -17,4 +18,6 @@ const orderRepository = new OrderRepositoryMemory();
 
 const checkout = new Checkout(itemRepository, orderRepository);
 
-new OrderController(httpServer, checkout);
+const getOrderByCpf = new GetOrderByCpf(orderRepository);
+
+new OrderController(httpServer, checkout, getOrderByCpf);

@@ -12,8 +12,7 @@ export default class OrderRepositoryMemory implements OrderRepository {
         this.orders.push(order);
     }
 
-    async getByCpf(cpf: string): Promise<Order[]> {
-        return this.orders.filter(order => order.cpf === cpf);
-        
+    async getByCpf(rawCpf: string): Promise<Order[]> {
+        return this.orders.filter(order => order.cpf.rawCpf === rawCpf);
     }
 }

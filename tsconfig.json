@@ -5,10 +5,14 @@
     "module": "commonjs",
     "outDir": "./dist",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@domain/*": ["./src/domain/*"],
+      "@infra/*": ["./src/infra/*"],
+    }
   },
   "include": [
     "src",
     "test"
-  ]
+  ],
 }

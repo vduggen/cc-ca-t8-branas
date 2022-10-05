@@ -5,7 +5,7 @@ import Item from "./Item";
 import OrderItem from "./OrderItem/OrderItem";
 
 export default class Order {
-    cpf: Cpf;
+    cpf: Cpf | string;
     orderItems: OrderItem[];
     coupon?: Coupon;
 
@@ -20,9 +20,9 @@ export default class Order {
         if (itemAlreadyExists) throw new Error('The item already exists');
     }
 
-    addItem(item: Item, quantity: number, dimension: Dimension, weight: number) {
+    addItem(item: Item, quantity: number) {
         this.existItemInOrderItems(item.idItem);
-        const orderItem = new OrderItem(item.idItem, item.price, quantity, dimension, weight);
+        const orderItem = new OrderItem(item.idItem, item.price, quantity, item.dimension, item.weight);
         this.orderItems.push(orderItem);
     }
 

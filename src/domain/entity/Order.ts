@@ -4,7 +4,7 @@ import Item from "./Item";
 import OrderItem from "./OrderItem";
 
 export default class Order {
-    cpf: Cpf | string;
+    cpf: Cpf;
     orderItems: OrderItem[];
     coupon?: Coupon;
 

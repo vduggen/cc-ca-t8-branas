@@ -1,4 +1,4 @@
-import Delivery from "./Delivery"
+import Delivery from "@domain/entity/Delivery";
 
 describe('Delivery', function() {
     test('Deve retornar o preço mínimo de frete caso ele seja superior ao valor calculado', function() {

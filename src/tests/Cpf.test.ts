@@ -1,4 +1,4 @@
-import Cpf from "./Cpf";
+import Cpf from "@domain/entity/Cpf";
 
 const makeSut = (cpf: string) => new Cpf(cpf);
 

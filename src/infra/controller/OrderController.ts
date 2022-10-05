@@ -1,5 +1,8 @@
-import Checkout from "../../application/Checkout";
+import { Request } from "express";
+import Checkout, { InputCheckout } from "../../application/Checkout";
 import HttpServer from "../http/HttpServer";
+
+type RequestOn = Request<any, any, InputCheckout>;
 
 export default class OrderController {
     
@@ -7,9 +10,8 @@ export default class OrderController {
         readonly httpServer: HttpServer,
         readonly checkout: Checkout,
     ) {
-        httpServer.on('post', '/checkout', async function(request) {
-            const total = checkout.execute(request.body);
-            return total;
+        httpServer.on<RequestOn>('post', '/checkout', async function(request) {
+            await checkout.execute(request.body);
         })
     }
 }

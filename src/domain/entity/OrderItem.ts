@@ -1,4 +1,4 @@
-import Dimension from "../../Dimension/Dimension";
+import Dimension from "./Dimension";
 
 export default class OrderItem {
     constructor(

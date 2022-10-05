@@ -1,5 +1,5 @@
-import Dimension from "../../Dimension/Dimension";
-import OrderItem from "./OrderItem";
+import Dimension from "@domain/entity/Dimension";
+import OrderItem from "@domain/entity/OrderItem";
 
 describe('OrderItem', function() {
     test('A quantidade de um item não pode ser negativa', function() {

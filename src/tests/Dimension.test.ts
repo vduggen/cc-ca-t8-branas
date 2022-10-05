@@ -1,4 +1,4 @@
-import Dimension from "./Dimension"
+import Dimension from "@domain/entity/Dimension";
 
 describe('Dimension', function() {
     test('A largura não pode ser negativa', function() {

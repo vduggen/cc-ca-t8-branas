@@ -1,4 +1,4 @@
-import Coupon from "./Coupon";
+import Coupon from "@domain/entity/Coupon";
 
 describe('Coupon', function() {
     test('Não deve aplicar cupom de desconto expirado', function() {

@@ -1,8 +1,7 @@
-import Cpf from "../Cpf/Cpf";
-import Dimension from "../Dimension/Dimension";
-import Coupon from "./Coupon/Coupon";
+import Coupon from "./Coupon";
+import Cpf from "./Cpf";
 import Item from "./Item";
-import OrderItem from "./OrderItem/OrderItem";
+import OrderItem from "./OrderItem";
 
 export default class Order {
     cpf: Cpf | string;

@@ -1,14 +1,10 @@
 export default class Delivery {
     private MIN_VALUE = 10;
 
-    constructor(
-        readonly distance: number,
-        readonly size: number,
-        readonly density: number
-    ) {}
-
-    calculate() {
-        const resultSum = this.distance * this.size * (this.density / 100);
-        return resultSum <= this.MIN_VALUE ? this.MIN_VALUE : resultSum;
+    calculate(distance: number, size: number, density: number) {
+        const resultSum = distance * size * (density / 100);
+        const isLowerMinValue = resultSum <= this.MIN_VALUE;
+        if (isLowerMinValue) return this.MIN_VALUE;
+        return resultSum;
     }
 }

@@ -21,7 +21,7 @@ export default class Order {
 
     addItem(item: Item, quantity: number) {
         this.existItemInOrderItems(item.idItem);
-        const orderItem = new OrderItem(item.idItem, item.price, quantity, item.dimension, item.weight);
+        const orderItem = new OrderItem(item.idItem, item.price, quantity, item.size, item.density);
         this.orderItems.push(orderItem);
     }
 

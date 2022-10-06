@@ -1,15 +1,14 @@
-import Dimension from "./Dimension";
-
 export default class OrderItem {
     constructor(
         readonly idItem: number,
         readonly price: number,
         readonly quantity: number,
-        readonly dimensions: Dimension,
-        readonly weight: number
+        readonly size: number,
+        readonly density: number
     ) {
         this.quantityIsNegative(quantity);
-        this.weightIsNegative(weight);
+        this.sizeIsNegative(size);
+        this.densityIsNegative(density);
     }
 
     getTotal() {
@@ -21,8 +20,13 @@ export default class OrderItem {
         if (isNegative) throw new Error('Quantity cannot be negative');
     }
 
-    weightIsNegative(weight: number) {
-        const isNegative = weight < 0;
-        if (isNegative) throw new Error('Weight cannot be negative');
+    densityIsNegative(density: number) {
+        const isNegative = density < 0;
+        if (isNegative) throw new Error('Density cannot be negative');
+    }
+
+    sizeIsNegative(size: number) {
+        const isNegative = size < 0;
+        if (isNegative) throw new Error('Size cannot be negative');
     }
 }

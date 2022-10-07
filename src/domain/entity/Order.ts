@@ -4,6 +4,7 @@ import Item from "./Item";
 import OrderItem from "./OrderItem";
 
 export default class Order {
+    code: string;
     cpf: Cpf;
     orderItems: OrderItem[];
     coupon?: Coupon;
@@ -11,6 +12,7 @@ export default class Order {
     constructor(cpf: string) {
         this.cpf = new Cpf(cpf);
         this.orderItems = [];
+        this.code = '';
     }
 
     existItemInOrderItems(id: number) {

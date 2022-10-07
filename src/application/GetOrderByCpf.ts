@@ -8,12 +8,13 @@ export default class GetOrderByCpf {
         const orders = await this.orderRepository.getByCpf(cpf);
         const output = [];
         for (const order of orders) {
-            output.push({ total: order.getTotal() })
+            output.push({ code: order.code, total: order.getTotal() })
         }
         return output;
     }
 }
 
 type Output = {
-    total: number
+    total: number,
+    code: string,
 }

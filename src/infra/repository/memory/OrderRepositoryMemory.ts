@@ -8,7 +8,14 @@ export default class OrderRepositoryMemory implements OrderRepository {
         this.orders = [];
     }
 
+    generateCode(): string {
+        const date = new Date();
+        const fullYear = date.getFullYear();
+        return `${fullYear}11111111`;
+    }
+
     async save(order: Order): Promise<void> {
+        order.code = this.generateCode();
         this.orders.push(order);
     }
 

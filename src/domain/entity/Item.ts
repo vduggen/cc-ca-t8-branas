@@ -12,7 +12,16 @@ export default class Item {
         private readonly weight: number
     ) {
         this.size = this.calculateSize(dimension);
+        this.weightIsNegative(weight);
         this.density = this.calculateDensity(weight);
+    }
+
+    negativeException(type: string) {
+        throw new Error(`${type} cannot be negative`);
+    }
+
+    private weightIsNegative(weight: number) {
+        if (weight < 0) this.negativeException('Weight');
     }
 
     private calculateSize(dimension: Dimension) {

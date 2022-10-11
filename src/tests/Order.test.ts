@@ -19,7 +19,7 @@ describe('Order', function() {
     })
 
     test('Deve criar um pedido com cupom de desconto (percentual sobre o total do pedido)', function() {
-        const order = new Order('092.216.699-47');
+        const order = new Order('092.216.699-47', new Date('2022-10-11T00:00:00'));
         const orderItem = new Item(1, 'Celular Samsung', 1000, new Dimension(1,1,1,1));
         order.addItem(orderItem, 1);
         order.addCoupon(new Coupon('VALE20', 20, new Date('2050-12-17T00:00:00')));

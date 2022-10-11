@@ -9,12 +9,12 @@ export type InputCalculateDelivery = {
 export default class CalculateDelivery {
     
     constructor(
-        readonly delivery: Delivery,
-        readonly itemRepository: ItemRepository,
+        private readonly delivery: Delivery,
+        private readonly itemRepository: ItemRepository,
     ) {}
 
     async execute(input: InputCalculateDelivery): Promise<number> {
         const item = await this.itemRepository.getItem(input.idItem);
-        return this.delivery.calculate(input.distance, item.size, item.density);
+        return this.delivery.calculate(input.distance, item.getVolume(), item.getDensity());
     }
 }

@@ -3,14 +3,15 @@ import CouponRepositoryMemory from "@infra/repository/memory/CouponRepositoryMem
 import ValidationCoupon from "../application/ValidationCoupon"
 
 describe('ValidationCoupon', function() {
-    test('Deve validar o cupom de desconto é expirado', async function() {
+    test('Deve validar um cupom de desconto', async function() {
         const couponRepository = new CouponRepositoryMemory();
-        couponRepository.save(new Coupon('VALE20', 20))
+        couponRepository.save(new Coupon('VALE20', 20, new Date('2022-10-11T10:00:00')))
         const validationCoupon = new ValidationCoupon(couponRepository);
         const input = {
-            name: 'VALE20'
+            name: 'VALE20',
+            now: new Date('2021-10-11T12:21:00')
         };
         const couponIsValid = await validationCoupon.execute(input)
-        expect(couponIsValid).toBe(true);
+        expect(couponIsValid).toBeTruthy();
     })
 })

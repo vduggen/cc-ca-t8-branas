@@ -1,18 +1,19 @@
 import Coupon from "./Coupon";
 import Cpf from "./Cpf";
 import Item from "./Item";
+import OrderCode from "./OrderCode";
 import OrderItem from "./OrderItem";
 
 export default class Order {
-    code: string;
+    private code: OrderCode;
     cpf: Cpf;
     orderItems: OrderItem[];
     coupon?: Coupon;
 
-    constructor(cpf: string, readonly date: Date = new Date()) {
+    constructor(cpf: string, readonly date: Date = new Date(), readonly sequence: number = 1) {
         this.cpf = new Cpf(cpf);
         this.orderItems = [];
-        this.code = '';
+        this.code = new OrderCode(date, sequence);
     }
 
     existItemInOrderItems(id: number) {
@@ -39,5 +40,9 @@ export default class Order {
     private calculeDiscount(total: number) {
         const existCoupon = this.coupon?.getPercent() || 0;
         return total * existCoupon / 100;
+    }
+
+    getCode() {
+        return this.code.getCode();
     }
 }

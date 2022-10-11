@@ -5,12 +5,12 @@ import Order from "@domain/entity/Order";
 
 describe('Order', function() {
     test('Não deve criar um pedido com cpf inválido', function() {
-        const order = () => new Order('000.000.000-00');
+        const order = () => new Order('000.000.000-00', new Date('2022-10-11T00:00:00'));
         expect(order).toThrow('Document is invalid');
     })
 
     test('Deve criar um pedido com 3 itens (com descrição, preço e quantidade)', function() {
-        const order = new Order('092.216.699-47');
+        const order = new Order('092.216.699-47', new Date('2022-10-11T00:00:00'));
         order.addItem(new Item(1, 'Celular Samsung', 1500, new Dimension(1,1,1,1)), 1);
         order.addItem(new Item(2, 'Celular Iphone', 5500, new Dimension(1,1,1,1)), 1);
         order.addItem(new Item(3, 'Celular LG', 500, new Dimension(1,1,1,1)), 3);
@@ -28,10 +28,17 @@ describe('Order', function() {
     })
 
     test('Não deve existir dois itens duplicados', function() {
-        const order = new Order('092.216.699-47');
+        const order = new Order('092.216.699-47', new Date('2022-10-11T00:00:00'));
         const orderItem = new Item(1, 'Celular Samsung', 1000, new Dimension(1,1,1,1));
         order.addItem(orderItem, 1);
         const resultAddItem = () => order.addItem(orderItem, 1);
         expect(resultAddItem).toThrow('The item already exists');
+    })
+
+    test('Deve gerar um pedido com o código', function() {
+        const order = new Order('092.216.699-47', new Date('2022-10-11T00:00:00'), 1);
+        const orderItem = new Item(1, 'Celular Samsung', 1000, new Dimension(1,1,1,1));
+        order.addItem(orderItem, 1);
+        expect(order.getCode()).toBe('202200000001');
     })
 })

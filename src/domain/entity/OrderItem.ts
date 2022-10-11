@@ -3,11 +3,11 @@ export default class OrderItem {
         readonly idItem: number,
         readonly price: number,
         readonly quantity: number,
-        readonly size: number,
+        readonly volume: number,
         readonly density: number
     ) {
         this.quantityIsNegative(quantity);
-        this.sizeIsNegative(size);
+        this.volumeIsNegative(volume);
         this.densityIsNegative(density);
     }
 
@@ -25,7 +25,7 @@ export default class OrderItem {
         if (isNegative) throw new Error('Density cannot be negative');
     }
 
-    sizeIsNegative(size: number) {
+    volumeIsNegative(size: number) {
         const isNegative = size < 0;
         if (isNegative) throw new Error('Size cannot be negative');
     }

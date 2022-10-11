@@ -1,18 +1,8 @@
 import Dimension from "@domain/entity/Dimension";
 
 describe('Dimension', function() {
-    test('A largura não pode ser negativa', function() {
-        const dimension = () => new Dimension(-20, 0, 0);
-        expect(dimension).toThrow('Width cannot be negative');
-    })
-
-    test('A altura não pode ser negativa', function() {
-        const dimension = () => new Dimension(0, -15, 0);
-        expect(dimension).toThrow('Height cannot be negative');
-    })
-
-    test('A profundidade não pode ser negativa', function() {
-        const dimension = () => new Dimension(0, 0, -10);
-        expect(dimension).toThrow('Depth cannot be negative');
+    test('As dimensões não podem ser negativas', function() {
+        const dimension = () => new Dimension(-20, 0, 0, 0);
+        expect(dimension).toThrow('Invalid dimension');
     })
 })

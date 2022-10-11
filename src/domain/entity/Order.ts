@@ -9,7 +9,7 @@ export default class Order {
     orderItems: OrderItem[];
     coupon?: Coupon;
 
-    constructor(cpf: string) {
+    constructor(cpf: string, readonly date: Date = new Date()) {
         this.cpf = new Cpf(cpf);
         this.orderItems = [];
         this.code = '';
@@ -23,7 +23,7 @@ export default class Order {
 
     addItem(item: Item, quantity: number) {
         this.existItemInOrderItems(item.idItem);
-        const orderItem = new OrderItem(item.idItem, item.price, quantity, item.size, item.density);
+        const orderItem = new OrderItem(item.idItem, item.price, quantity, item.getVolume(), item.getDensity());
         this.orderItems.push(orderItem);
     }
 

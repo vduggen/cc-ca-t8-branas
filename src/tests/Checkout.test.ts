@@ -9,7 +9,7 @@ import GetOrderByCpf from "../application/GetOrderByCpf";
 
 const makeSut = async () => {
     const itemRepository = new ItemRepositoryMemory();
-    await itemRepository.save(new Item(1, 'Camera', 1000, new Dimension(20, 15, 10), 0.003));
+    await itemRepository.save(new Item(1, 'Camera', 1000, new Dimension(20, 15, 10, 0.003)));
 
     const orderRepository = new OrderRepositoryMemory();
 

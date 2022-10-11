@@ -17,10 +17,10 @@ export default class CouponRepositoryMemory implements CouponRepository {
         return result.length > 0;
     }
 
-    async validate(name: string): Promise<boolean> {
+    async validate(name: string, now: Date): Promise<boolean> {
         const result = this.filterCoupon(name);
         const [firstItem] = result;
-        const couponIsValid = !firstItem.isExpired();
+        const couponIsValid = !firstItem.isExpired(now);
         return couponIsValid;
     }
 

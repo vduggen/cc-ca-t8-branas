@@ -2,15 +2,13 @@ export default class Coupon {
     constructor(
         readonly name: string,
         readonly percent: number,
-        readonly date: Date = new Date()
+        readonly expireDate: Date = new Date()
     ) {}
 
     isExpired(now: Date = new Date()) {
         const currentDate = now.getTime();
-        const dateCoupon = this.date.getTime();
-        const isExpired = dateCoupon < currentDate;
-        if (isExpired) throw new Error('Cupom expirado');
-        return false;
+        const expireDateCoupon = this.expireDate.getTime();
+        return expireDateCoupon < currentDate;
     }
 
     getPercent() {

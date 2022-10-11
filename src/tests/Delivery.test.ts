@@ -7,13 +7,13 @@ describe('Delivery', function() {
         expect(result).toBe(10)
     })
 
-    test('Deve calcular o valor do frete (guitarra)', function() {
+    test('Deve calcular o valor do frete com base nas dimensões (guitarra)', function() {
         const delivery = new Delivery();
         const result = delivery.calculate(1000, 0.03, 100);
         expect(result).toBe(30)
     })
 
-    test('Deve calcular o valor do frete (geladeira)', function() {
+    test('Deve calcular o valor do frete com base nas dimensões (geladeira)', function() {
         const delivery = new Delivery();
         const result = delivery.calculate(1000, 1, 40);
         expect(result).toBe(400)

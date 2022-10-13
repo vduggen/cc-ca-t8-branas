@@ -3,7 +3,7 @@ import OrderCode from "@domain/entity/OrderCode";
 import OrderRepository from "@domain/repository/OrderRepository";
 
 export type InputGetOrderByCode = {
-    code: OrderCode
+    code: string
 }
 
 export default class GetOrderByCode {

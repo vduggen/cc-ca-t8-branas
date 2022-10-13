@@ -9,12 +9,14 @@ import Checkout from "./application/Checkout";
 import GetOrderByCpf from "./application/GetOrderByCpf";
 import CalculateDelivery from "./application/CalculateDelivery";
 import Delivery from "@domain/entity/Delivery";
+import ValidationCoupon from "./application/ValidationCoupon";
+import CouponRepositoryMemory from "@infra/repository/memory/CouponRepositoryMemory";
 
 const httpServer = new ExpressAdapter();
 httpServer.listen(3000);
 
 const itemRepository = new ItemRepositoryMemory();
-itemRepository.save(new Item(1, 'Camera', 1000, new Dimension(20, 15, 10), 0.003));
+itemRepository.save(new Item(1, 'Camera', 1000, new Dimension(20, 15, 10, 0.003)));
 
 const orderRepository = new OrderRepositoryMemory();
 const checkout = new Checkout(itemRepository, orderRepository);
@@ -24,4 +26,13 @@ const getOrderByCpf = new GetOrderByCpf(orderRepository);
 const delivery = new Delivery();
 const calculateDelivery = new CalculateDelivery(delivery, itemRepository);
 
-new OrderController(httpServer, checkout, getOrderByCpf, calculateDelivery);
+const couponRepository = new CouponRepositoryMemory();
+const validationCoupon = new ValidationCoupon(couponRepository)
+
+new OrderController(
+    httpServer,
+    checkout,
+    getOrderByCpf,
+    calculateDelivery,
+    validationCoupon
+);

@@ -33,10 +33,4 @@ describe('Checkout', function() {
         expect(ordersByCpf).toHaveLength(1);
         expect(ordersByCpf[0].total).toBe(1000)
     })
-
-    test('Deve gerar o código do pedido', async function() {
-        const ordersByCpf = await makeSut();
-
-        expect(ordersByCpf[0].code).toBe('202211111111');
-    })
 })

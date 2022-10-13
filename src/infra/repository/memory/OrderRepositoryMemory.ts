@@ -1,3 +1,4 @@
+import OrderCode from "@domain/entity/OrderCode";
 import Order from "../../../domain/entity/Order";
 import OrderRepository from "../../../domain/repository/OrderRepository";
 
@@ -6,6 +7,10 @@ export default class OrderRepositoryMemory implements OrderRepository {
 
     constructor() {
         this.orders = [];
+    }
+
+    async getByCode(code: string): Promise<Order[]> {
+        return this.orders.filter(order => order.getCode() === code);
     }
 
     async save(order: Order): Promise<void> {

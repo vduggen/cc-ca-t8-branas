@@ -5,7 +5,7 @@ import OrderCode from "./OrderCode";
 import OrderItem from "./OrderItem";
 
 export default class Order {
-    private code: OrderCode;
+    private code: string;
     cpf: Cpf;
     orderItems: OrderItem[];
     coupon?: Coupon;
@@ -13,7 +13,8 @@ export default class Order {
     constructor(cpf: string, readonly date: Date = new Date(), readonly sequence: number = 1) {
         this.cpf = new Cpf(cpf);
         this.orderItems = [];
-        this.code = new OrderCode(date, sequence);
+        const orderCode = new OrderCode(date, sequence);
+        this.code = orderCode.getCode();
     }
 
     existItemInOrderItems(id: number) {
@@ -43,6 +44,6 @@ export default class Order {
     }
 
     getCode() {
-        return this.code.getCode();
+        return this.code;
     }
 }

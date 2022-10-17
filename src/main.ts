@@ -11,6 +11,8 @@ import CalculateDelivery from "./application/CalculateDelivery";
 import Delivery from "@domain/entity/Delivery";
 import ValidationCoupon from "./application/ValidationCoupon";
 import CouponRepositoryMemory from "@infra/repository/memory/CouponRepositoryMemory";
+import GetListOrders from "./application/GetListOrders";
+import GetOrderByCode from "./application/GetOrderByCode";
 
 const httpServer = new ExpressAdapter();
 httpServer.listen(3000);
@@ -29,10 +31,16 @@ const calculateDelivery = new CalculateDelivery(delivery, itemRepository);
 const couponRepository = new CouponRepositoryMemory();
 const validationCoupon = new ValidationCoupon(couponRepository)
 
+const getOrderByCode = new GetOrderByCode(orderRepository);
+
+const getListOrders = new GetListOrders(orderRepository);
+
 new OrderController(
     httpServer,
     checkout,
     getOrderByCpf,
     calculateDelivery,
-    validationCoupon
+    validationCoupon,
+    getOrderByCode,
+    getListOrders
 );

@@ -1,6 +1,7 @@
 import { Request } from "express";
 import CalculateDelivery, { InputCalculateDelivery } from "../../application/CalculateDelivery";
 import Checkout, { InputCheckout } from "../../application/Checkout";
+import GetListOrders from "../../application/GetListOrders";
 import GetOrderByCode, { InputGetOrderByCode } from "../../application/GetOrderByCode";
 import GetOrderByCpf from "../../application/GetOrderByCpf";
 import ValidationCoupon, { InputValidationCoupon } from "../../application/ValidationCoupon";
@@ -21,6 +22,7 @@ export default class OrderController {
         readonly calculateDelivery: CalculateDelivery,
         readonly validationCoupon: ValidationCoupon,
         readonly getOrderByCode: GetOrderByCode,
+        readonly getListOrders: GetListOrders
     ) {
         httpServer.on<RequestCheckout>('post', '/checkout', async function(request) {
             await checkout.execute(request.body);
@@ -29,7 +31,13 @@ export default class OrderController {
         })
 
         httpServer.on<RequestOrder>('get', '/orders', async function(request) {
-            const orders = await getOrderByCpf.execute(request.query.cpf);
+            let orders = []
+            
+            if (request?.query?.cpf) {
+                orders = await getOrderByCpf.execute(request.query.cpf);
+            } else {
+                orders = await getListOrders.execute();
+            }
 
             return { orders };
         })

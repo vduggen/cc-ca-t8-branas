@@ -3,7 +3,7 @@ import Order from "../../../domain/entity/Order";
 import OrderRepository from "../../../domain/repository/OrderRepository";
 
 export default class OrderRepositoryMemory implements OrderRepository {
-    orders: Order[];
+    private orders: Order[];
 
     constructor() {
         this.orders = [];
@@ -19,5 +19,9 @@ export default class OrderRepositoryMemory implements OrderRepository {
 
     async getByCpf(rawCpf: string): Promise<Order[]> {
         return this.orders.filter(order => order.cpf.rawCpf === rawCpf);
+    }
+
+    async getAll(): Promise<Order[]> {
+        return this.orders;
     }
 }

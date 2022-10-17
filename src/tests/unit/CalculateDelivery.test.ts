@@ -2,7 +2,7 @@ import Delivery from "@domain/entity/Delivery"
 import Dimension from "@domain/entity/Dimension";
 import Item from "@domain/entity/Item";
 import ItemRepositoryMemory from "@infra/repository/memory/ItemRepositoryMemory";
-import CalculateDelivery, { InputCalculateDelivery } from "../application/CalculateDelivery"
+import CalculateDelivery, { InputCalculateDelivery } from "../../application/CalculateDelivery"
 
 describe('CalculateDelivery', function() {
     test('Deve simular o frete ', async function() {

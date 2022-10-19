@@ -1,5 +1,4 @@
 import Order from "@domain/entity/Order";
-import OrderCode from "@domain/entity/OrderCode";
 import OrderRepository from "@domain/repository/OrderRepository";
 
 export type InputGetOrderByCode = {

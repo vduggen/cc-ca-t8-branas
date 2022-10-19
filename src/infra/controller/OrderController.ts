@@ -1,5 +1,5 @@
 import { Request } from "express";
-import CalculateDelivery, { InputCalculateDelivery } from "../../application/CalculateDelivery";
+import CalculateFreight, { InputCalculateFreight } from "../../application/CalculateFreight";
 import Checkout, { InputCheckout } from "../../application/Checkout";
 import GetListOrders from "../../application/GetListOrders";
 import GetOrderByCode, { InputGetOrderByCode } from "../../application/GetOrderByCode";
@@ -10,7 +10,7 @@ import HttpServer from "../http/HttpServer";
 type RequestCheckout = Request<any, any, InputCheckout>;
 type RequestOrder = Request<any, any, any, { cpf: string }>;
 type RequestGetOrderByCode = Request<InputGetOrderByCode>;
-type RequestDelivery = Request<any, any, InputCalculateDelivery>;
+type RequestFreight = Request<any, any, InputCalculateFreight>;
 type RequestCoupon = Request<any, any, any, InputValidationCoupon>;
 
 export default class OrderController {
@@ -19,7 +19,7 @@ export default class OrderController {
         readonly httpServer: HttpServer,
         readonly checkout: Checkout,
         readonly getOrderByCpf: GetOrderByCpf,
-        readonly calculateDelivery: CalculateDelivery,
+        readonly calculateFreight: CalculateFreight,
         readonly validationCoupon: ValidationCoupon,
         readonly getOrderByCode: GetOrderByCode,
         readonly getListOrders: GetListOrders
@@ -48,8 +48,8 @@ export default class OrderController {
             return { order };
         })
 
-        httpServer.on<RequestDelivery>('get', '/delivery', async function(request) {
-            const orders = await calculateDelivery.execute(request.body);
+        httpServer.on<RequestFreight>('get', '/freight', async function(request) {
+            const orders = await calculateFreight.execute(request.body);
 
             return { orders };
         })

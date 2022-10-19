@@ -1,4 +1,4 @@
-export default class Delivery {
+export default class Freight {
     private MIN_VALUE = 10;
 
     calculate(distance: number, size: number, density: number) {

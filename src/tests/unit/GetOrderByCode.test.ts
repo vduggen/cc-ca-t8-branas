@@ -1,6 +1,6 @@
 import Order from "@domain/entity/Order";
 import OrderRepositoryMemory from "@infra/repository/memory/OrderRepositoryMemory"
-import GetOrderByCode, { InputGetOrderByCode } from "../application/GetOrderByCode"
+import GetOrderByCode, { InputGetOrderByCode } from "@application/GetOrderByCode";
 
 describe('GetOrderByCode', function() {
     test('Deve retornar um pedido com base no código', async function() {

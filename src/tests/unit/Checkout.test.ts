@@ -1,11 +1,11 @@
-import Checkout from "../application/Checkout";
+import Checkout from "../../application/Checkout";
 
-import Dimension from "../domain/entity/Dimension";
-import Item from "../domain/entity/Item";
+import Dimension from "../../domain/entity/Dimension";
+import Item from "../../domain/entity/Item";
 
-import OrderRepositoryMemory from "../infra/repository/memory/OrderRepositoryMemory";
-import ItemRepositoryMemory from "../infra/repository/memory/ItemRepositoryMemory";
-import GetOrderByCpf from "../application/GetOrderByCpf";
+import OrderRepositoryMemory from "../../infra/repository/memory/OrderRepositoryMemory";
+import ItemRepositoryMemory from "../../infra/repository/memory/ItemRepositoryMemory";
+import GetOrderByCpf from "../../application/GetOrderByCpf";
 
 const makeSut = async () => {
     const itemRepository = new ItemRepositoryMemory();

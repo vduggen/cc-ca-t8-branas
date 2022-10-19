@@ -6,13 +6,15 @@
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
+    "baseUrl": "./src",
     "paths": {
-      "@domain/*": ["./src/domain/*"],
-      "@infra/*": ["./src/infra/*"],
+      "@domain/*": ["./domain/*"],
+      "@infra/*": ["./infra/*"],
+      "@application/*": ["./application/*"]
     }
   },
   "include": [
     "src",
     "test"
-  ],
+  ]
 }

@@ -7,8 +7,8 @@ import ItemRepositoryMemory from "./infra/repository/memory/ItemRepositoryMemory
 import OrderRepositoryMemory from "./infra/repository/memory/OrderRepositoryMemory";
 import Checkout from "./application/Checkout";
 import GetOrderByCpf from "./application/GetOrderByCpf";
-import CalculateDelivery from "./application/CalculateDelivery";
-import Delivery from "@domain/entity/Delivery";
+import CalculateFreight from "./application/CalculateFreight";
+import Delivery from "@domain/entity/Freight";
 import ValidationCoupon from "./application/ValidationCoupon";
 import CouponRepositoryMemory from "@infra/repository/memory/CouponRepositoryMemory";
 import GetListOrders from "./application/GetListOrders";
@@ -26,7 +26,7 @@ const checkout = new Checkout(itemRepository, orderRepository);
 const getOrderByCpf = new GetOrderByCpf(orderRepository);
 
 const delivery = new Delivery();
-const calculateDelivery = new CalculateDelivery(delivery, itemRepository);
+const calculateFreight = new CalculateFreight(delivery, itemRepository);
 
 const couponRepository = new CouponRepositoryMemory();
 const validationCoupon = new ValidationCoupon(couponRepository)
@@ -39,7 +39,7 @@ new OrderController(
     httpServer,
     checkout,
     getOrderByCpf,
-    calculateDelivery,
+    calculateFreight,
     validationCoupon,
     getOrderByCode,
     getListOrders

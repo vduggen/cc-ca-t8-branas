@@ -1,6 +1,6 @@
 import Order from "@domain/entity/Order";
 import OrderRepositoryMemory from "@infra/repository/memory/OrderRepositoryMemory"
-import GetListOrders from "../application/GetListOrders"
+import GetListOrders from "@application/GetListOrders"
 
 describe('GetListOrders', function() {
     test('Deve retornar a lista de pedidos', async function() {

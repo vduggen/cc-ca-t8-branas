@@ -1,6 +1,6 @@
 import Coupon from "@domain/entity/Coupon";
 import CouponRepositoryMemory from "@infra/repository/memory/CouponRepositoryMemory";
-import ValidationCoupon from "../application/ValidationCoupon"
+import ValidationCoupon from "@application/ValidationCoupon"
 
 describe('ValidationCoupon', function() {
     test('Deve validar um cupom de desconto', function() {

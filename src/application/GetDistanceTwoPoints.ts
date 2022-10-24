@@ -17,6 +17,6 @@ export default class GetDistanceTwoPoints {
         const fromZipcodeInfos = await this.distanceRepository.getByZipcode(input.fromZipcode);
         const toZipcodeInfos = await this.distanceRepository.getByZipcode(input.toZipcode);
 
-        return this.distance.getDistanceTwoPoints(fromZipcodeInfos, toZipcodeInfos);        
+        return this.distance.getDistanceTwoPoints(fromZipcodeInfos, toZipcodeInfos);
     }
 }
